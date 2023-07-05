@@ -1,5 +1,3 @@
-<img align="right" width="30%" src="/src/assets/logo.png"></img>
-
 <h3 align="middle">
 <a href="https://github.com/FontysIPost/FIPost/wiki">Wiki</a>
 <a>•</a>
