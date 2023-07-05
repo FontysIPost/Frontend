@@ -1,51 +1,51 @@
-[![Publish Docker image](https://github.com/FIPost/ui/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/FIPost/ui/actions/workflows/docker-publish.yml)
-[![Build image](https://github.com/FIPost/ui/actions/workflows/build.yml/badge.svg)](https://github.com/FIPost/ui/actions/workflows/build.yml)
-![ipost-logo](https://github.com/FIPost/docs/blob/master/assets/logo-name.png?raw=true)
+<img align="right" width="30%" src="/src/assets/logo.png"></img>
 
-# ui
-<h3 align="center">
-  <a href="https://github.com/FIPost/docs">Documentation</a>
+<h3 align="middle">
+<a href="https://github.com/FontysIPost/FIPost/wiki">Wiki</a>
+<a>•</a>
+<a href="https://github.com/FontysIPost/FIPost/blob/dev/.github/CONTRIBUTING.md">Contributing</a>
+<a>•</a>
+<a href="https://discord.gg/3xFK8ZAA3d">Contact</a>
 </h3>
 
-VueJS front-end for the logistal process of managing packages.
+# 📬 Frontend - Fontys Internal Post (FIPost)
+Frontend repository of [FIPost](https://github.com/FontysIPost/FIPost) made with VueJS
 
-## Getting Started
-Install node modules.
-```zsh
-npm install
+## ⚒️ Development
+### 📐Stack
+- **Node version:** 14.15.5
+- **NPM version:** 6.14.11
+- [VueJS](https://vuejs.org/guide/introduction.html) - HTML/[SCSS](https://sass-lang.com/documentation/syntax)/JavaScript and [TypeScript](https://www.typescriptlang.org/docs/)
+>Upgrading node to later versions will crash.
+
+## 🏁 Getting Started
+1. Clone the repository:
+```sh
+git clone --recursive https://github.com/FontysIPost/Frontend.git
 ```
-
-Run 
+2. Install dependencies:
+```sh
+# Check which node you're using: node -v
+# Install nvm(node version manager) to quickly change node versions
+# To install node version: nvm install 14.15.5
+# To switch node version: nvm use 14.15.5
+npm i
+```
+___
+3. Copy `.env.example` and paste it as `.env` and populate these ports (make sure it's in the root directory of the `ui`):
+```dotenv
+VUE_APP_API_GATEWAY=https://Localhost:44311
+VUE_APP_URL=Localhost:8080
+```
+___
+4. Run the frontend UI and open `http://localhost:8080/` when ready:
 ```sh
 npm run serve
 ```
-
-You will get the following output.
-```sh
-  App running at:
-  - Local:   http://localhost:8080/ 
-  - Network: http://192.168.1.74:8080/
-
-Issues checking in progress...
-No issues found.
-```
-
-Copy the `.env.example` file and paste it as a new file named `.env`.
-
-Use the ip address from the line `- Network: http://192.168.1.74:8080/` and replace `ipadress` in you `.env` file.
-
-```env
-VUE_APP_API_GATEWAY=http://192.168.1.74:8123
-VUE_APP_URL=http://192.168.1.74:8080
-```
-
-Press `ctl` + `c` to exit the current build and rerun.
-Serve VueJS
-```zsh
-npm run serve
-```
-
-## Getting Started with Docker
+>Make sure to run the backend in order to use and access the functionality
+___
+___
+## 📦Getting Started with Docker [might be outdated]
 The docker image used in this build uses a Nginx webserver to serve the SPA VueJS content on port `80`.
 
 ### Build
