@@ -31,13 +31,11 @@ git clone --recursive https://github.com/FontysIPost/Frontend.git
 # To switch node version: nvm use 14.15.5
 npm i
 ```
-___
-3. Copy `.env.example` and paste it as `.env` and populate these ports (make sure it's in the root directory of the `ui`):
+3. Copy `.env.example` and paste it as `.env` and populate these ports (make sure it's in the root directory of the `Frontend`):
 ```dotenv
 VUE_APP_API_GATEWAY=https://Localhost:44311
 VUE_APP_URL=Localhost:8080
 ```
-___
 4. Run the frontend UI and open `http://localhost:8080/` when ready:
 ```sh
 npm run serve
