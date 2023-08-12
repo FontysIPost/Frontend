@@ -146,7 +146,7 @@ import TicketRequest from "@/classes/requests/TicketRequest";
 // Services.
 import { roomService } from "@/services/locatieService/roomservice";
 import { personeelService } from "@/services/personeelService/personeelService";
-import { getCurrentInstance } from "@vue/runtime-core";
+import { getCurrentInstance } from "vue";
 import { Emit } from "vue-property-decorator";
 import { pakketService } from "@/services/pakketService/pakketservice";
 import Package from "@/classes/Package";

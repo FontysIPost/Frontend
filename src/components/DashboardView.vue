@@ -1,18 +1,18 @@
 <template>
   <div class="m-container">
-    <MenuItem
+    <DashboardItem
       @click="registerClicked()"
       class="item"
       labelText="Registreren"
       :source="getImgUrl('register.png')"
     />
-    <MenuItem
+    <DashboardItem
       @click="searchClicked()"
       class="item"
       labelText="Zoeken"
       :source="getImgUrl('search.png')"
     />
-    <MenuItem
+    <DashboardItem
       @click="locationClicked()"
       class="item"
       labelText="Locaties"
@@ -23,12 +23,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import MenuItem from "@/components/MenuItem.vue";
+import DashboardItem from "@/components/DashboardItem.vue";
 
 
-const Menu = defineComponent({
+const Dashboard = defineComponent({
   components: {
-    MenuItem,
+    DashboardItem
   },
   data() {
     return {};
@@ -58,7 +58,7 @@ const Menu = defineComponent({
 
   },
 });
-export default Menu;
+export default Dashboard;
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

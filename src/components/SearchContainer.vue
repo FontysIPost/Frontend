@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Search from "./Search.vue";
+import Search from "./SearchBar.vue";
 import ComboBox from "@/components/standardUi/ComboBox.vue";
 
 const SearchContainer = defineComponent({

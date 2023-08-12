@@ -36,7 +36,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Search from "./Search.vue";
+import Search from "./SearchBar.vue";
 import ComboBox from "@/components/standardUi/ComboBox.vue";
 
 const SearchContainer = defineComponent({
@@ -138,7 +138,7 @@ export default SearchContainer;
   color: #ffffff;
 
   border-radius: 5px;
-  border: 0px;
+  border: 0;
   box-shadow: $shadow;
 
   font-weight: bold;

@@ -1,6 +1,6 @@
 import {createWebHashHistory, createRouter} from "vue-router";
 import RegisterPackage from "@/views/RegisterPackage.vue";
-import Home from "@/views/Home.vue";
+import Home from "@/views/HomeView.vue";
 import PakketOverzicht from "@/views/PakketOverzicht.vue";
 import PackagePage from "@/views/PackagePage.vue";
 import AddLocation from "@/views/AddLocation.vue";

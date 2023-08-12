@@ -24,7 +24,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import axios from "axios";
-const Navigationbar = defineComponent({
+const NavigationBar = defineComponent({
     data() {
         return {
             email: String,
@@ -58,7 +58,7 @@ const Navigationbar = defineComponent({
         })
     }
 });
-export default Navigationbar;
+export default NavigationBar;
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -66,7 +66,6 @@ export default Navigationbar;
 @import "@/styling/main.scss";
 
 .nav-container {
-  position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
   background-color: #fff;

@@ -10,11 +10,10 @@
 
 <script lang="ts">
 import { Vue, Options } from "vue-class-component";
-import Navigationbar from "@/components/Navigationbar.vue";
+import Navigationbar from "@/components/NavigationBar.vue";
 import Modal from "@/views/Modal.vue";
 import { getCurrentInstance } from "vue";
 import { AxiosError } from "axios";
-import axios from "axios";
 
 @Options({
   components: {
@@ -24,7 +23,7 @@ import axios from "axios";
 })
 export default class App extends Vue {
   public modalVisible: boolean = false;
-  public body: string = "";
+  public body: unknown = "";
   public stayOnExit = true;
   public is401Error = false;
 
@@ -48,13 +47,8 @@ export default class App extends Vue {
 
   async mounted() {
     this.emitter.on("err", (err: AxiosError) => {
-      if(err.response != null){
-        if(err.response.status == 500 || err.response.status == 404 || err.response.status == 400 || err.response.status == 401){
-            this.stayOnExit = false;
-        }
-        else{
-          this.stayOnExit = true;
-        }
+      if(err.response){
+        this.stayOnExit = !(err.response.status == 500 || err.response.status == 404 || err.response.status == 400 || err.response.status == 401);
         this.body = err.response.data;
       }
       else{
@@ -134,7 +128,6 @@ export default class App extends Vue {
 
 #app {
   font-family: $font-family;
-  padding-top: 1em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

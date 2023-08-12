@@ -76,7 +76,7 @@
       </div>
       <SmallBtnFinish
         :text="btnText"
-        :red="btnText == 'Vorige' ? true : false"
+        :red="btnText == 'Vorige'"
         v-on:click="toggleStep"
         :disabled="loadPostRequest"
       />
@@ -91,24 +91,22 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import {Options, Vue} from "vue-class-component";
 import BtnBack from "@/components/standardUi/BtnBack.vue";
 import InputField from "@/components/standardUi/InputField.vue";
 import SmallBtnFinish from "@/components/standardUi/SmallBtnFinish.vue";
 import CBSearchSuggestions from "@/components/standardUi/CBSearchSuggestions.vue";
 import RegisterPackageModel from "@/classes/requests/PackageRequest";
-import { pakketService } from "@/services/pakketService/pakketservice";
-import { roomService } from "@/services/locatieService/roomservice";
-import { personeelService } from "@/services/personeelService/personeelService";
+import {pakketService} from "@/services/pakketService/pakketservice";
+import {roomService} from "@/services/locatieService/roomservice";
+import {personeelService} from "@/services/personeelService/personeelService";
 import Person from "@/classes/Person";
-import Room from "@/classes/Room";
+import Room, {roomHelper} from "@/classes/Room";
 import PackageValidation from "@/classes/validation/PackageValidation";
 import SelectOption from "@/classes/helpers/SelectOption";
-import { getCurrentInstance } from "@vue/runtime-core";
-import { AxiosError } from "axios";
+import {getCurrentInstance} from "vue";
+import {AxiosError} from "axios";
 import LoadingIcon from "@/components/standardUi/LoadingIcon.vue";
-import { roomHelper } from "@/classes/Room";
-import Package from "@/classes/Package";
 
 @Options({
   components: {
@@ -129,7 +127,6 @@ export default class RegisterPackage extends Vue {
 
   public fpackage: RegisterPackageModel = new RegisterPackageModel();
 
-  private test: string = "";
   private overview: boolean = false;
   private btnText: string = "Volgende";
   private errorText: boolean = false;
@@ -221,10 +218,9 @@ export default class RegisterPackage extends Vue {
       .post(this.fpackage)
       .then((res) => {
         this.loadPostRequest = false;
-        var result = res;
         this.$router.push({
           name: "PackagePage",
-          params: { id: result.id },
+          params: { id: res.id },
         });
       })
       .catch((err: AxiosError) => {
