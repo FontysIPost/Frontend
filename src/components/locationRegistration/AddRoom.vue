@@ -67,7 +67,7 @@ import { buildingService } from "@/services/locatieService/buildingservice";
 import City from "@/classes/City";
 import { cityService } from "@/services/locatieService/cityservice";
 import LinkOrStayModal from "@/components/standardUi/LinkOrStayModal.vue";
-import { getCurrentInstance } from "@vue/runtime-core";
+import { getCurrentInstance } from "vue";
 import SelectOption from "@/classes/helpers/SelectOption";
 import LoadingIcon from "@/components/standardUi/LoadingIcon.vue";
 import { AxiosError } from "axios";
@@ -112,7 +112,7 @@ export default class AddRoom extends Vue {
   private nameValid: boolean = true;
   private buildingValid: boolean = true;
   private cityValid: boolean = true;
-  private error: string = "";
+  private error: unknown = "";
   private cityChanged: boolean = false;
 
   assignBuildingToRoom(option: SelectOption): void {
@@ -213,7 +213,7 @@ export default class AddRoom extends Vue {
   }
 
   private getAllByCity(cityId) {
-    if (this.cityChanged == false) {
+    if (!this.cityChanged) {
       this.cityChanged = true;
       buildingService
         .getAllByCity(cityId)

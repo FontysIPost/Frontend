@@ -1,7 +1,7 @@
 <template>
-  <div class="menu-item">
-    <div class="menugeneric">
-      <h2 class="menuText">{{ labelText }}</h2>
+  <div class="dashboard-item">
+    <div class="dashboard-generic">
+      <h2 class="dashboardText">{{ labelText }}</h2>
       <img class="slot" :src="source" alt="icon" />
     </div>
   </div>
@@ -17,13 +17,13 @@ import { Options, Vue } from "vue-class-component";
     source: String
   },
 })
-export default class MenuItem extends Vue {}
+export default class DashboardItem extends Vue {}
 </script>
 
 <style scoped lang="scss">
 @import "src/styling/main.scss";
 
-.menu-item {
+.dashboard-item {
   width: 200px;
   height: 200px;
   display: flex;
@@ -35,11 +35,11 @@ export default class MenuItem extends Vue {}
   cursor: pointer;
 }
 
-.menugeneric {
+.dashboard-generic {
   margin: auto;
 }
 
-.menuText {
+.dashboardText {
   font-size: 1.5em;
   width: 175px;
   margin: auto;

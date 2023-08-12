@@ -9,7 +9,7 @@ import { VueSignaturePad } from 'vue-signature-pad';
 const emitter = mitt();
 library.add(faCheckCircle, faSortDown, faSortUp, faSearch, faFlagCheckered, faCheck, faPlusSquare, faHome)
 
-var app = createApp(App);
+const app = createApp(App);
 app.config.globalProperties.emitter = emitter;
 
 app.

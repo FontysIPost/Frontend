@@ -43,7 +43,7 @@ import { ColumnType } from "@/classes/table/ColumnType";
 import Room from "@/classes/Room";
 import City from "@/classes/City"
 import { roomService } from "@/services/locatieService/roomservice";
-import { getCurrentInstance } from "@vue/runtime-core";
+import { getCurrentInstance } from "vue";
 import { AxiosError } from "axios";
 import LoadingIcon from "@/components/standardUi/LoadingIcon.vue";
 import { TableCell } from "@/classes/table/TableCell";

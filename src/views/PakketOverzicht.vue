@@ -29,7 +29,7 @@ import { pakketService } from "@/services/pakketService/pakketservice";
 import Package from "@/classes/Package";
 import SearchContainer from "@/components/SearchContainer.vue";
 import BtnBack from "@/components/standardUi/BtnBack.vue";
-import { getCurrentInstance } from "@vue/runtime-core";
+import { getCurrentInstance } from "vue";
 import { AxiosError } from "axios";
 import { ColumnType } from "@/classes/table/ColumnType";
 import LoadingIcon from "@/components/standardUi/LoadingIcon.vue";

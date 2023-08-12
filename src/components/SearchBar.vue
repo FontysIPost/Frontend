@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-const Search = defineComponent({
+const SearchBar = defineComponent({
   data() {
     return {
       inputValue: "",
@@ -22,7 +22,7 @@ const Search = defineComponent({
     },
   },
 });
-export default Search;
+export default SearchBar;
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

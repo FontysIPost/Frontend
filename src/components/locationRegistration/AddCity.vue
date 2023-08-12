@@ -53,7 +53,7 @@ import LoadingIcon from "@/components/standardUi/LoadingIcon.vue";
 import CityRequest from "@/classes/requests/CityRequest";
 import { cityService } from "@/services/locatieService/cityservice";
 import LinkOrStayModal from "@/components/standardUi/LinkOrStayModal.vue";
-import { getCurrentInstance } from "@vue/runtime-core";
+import { getCurrentInstance } from "vue";
 import { AxiosError } from "axios";
 
 @Options({
@@ -72,7 +72,7 @@ export default class AddCity extends Vue {
   private city: CityRequest = new CityRequest("");
   private showModal: boolean = false;
   private nameValid: boolean = true;
-  private error: string = "";
+  private error: unknown = "";
   private isLoading: boolean = false;
   private loadPostRequest: boolean = false;
   private loadDeleteRequest: boolean = false;

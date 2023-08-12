@@ -27,7 +27,7 @@
         />
         <InputField
           label="Huisnummer:"
-          v-model:input="building.Address.Number"
+          v-model:input="building.Address.Number.toLocaleString()"
           :valid="numberValid"
           @update:input="numberChanged"
         />
@@ -86,7 +86,7 @@ import City from "@/classes/City";
 
 import { buildingService } from "@/services/locatieService/buildingservice";
 import { cityService } from "@/services/locatieService/cityservice";
-import { getCurrentInstance } from "@vue/runtime-core";
+import { getCurrentInstance } from "vue";
 import SelectOption from "@/classes/helpers/SelectOption";
 import LoadingIcon from "@/components/standardUi/LoadingIcon.vue";
 import { AxiosError } from "axios";
@@ -134,7 +134,7 @@ export default class AddBuilding extends Vue {
   private buildingValid: boolean = true;
   private postalCodeValid: boolean = true;
   private numberValid: boolean = true;
-  private error: string = "";
+  private error: unknown = "";
   
 
   async created() {
