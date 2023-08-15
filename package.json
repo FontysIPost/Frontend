@@ -16,7 +16,7 @@
     "core-js": "^3.6.5",
     "lodash": "^4.17.21",
     "mitt": "^2.1.0",
-    "pdfmake": "^0.1.70",
+    "pdfmake": "0.2.7",
     "vue": "^3.0.0",
     "vue-axios": "^3.2.4",
     "vue-barcode-reader": "0.0.3",

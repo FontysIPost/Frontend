@@ -2,13 +2,6 @@
   <div>
     <LoadingIcon v-if="loading" />
     <div v-else>
-
-     <!-- <TableComponent
-        :items="items"
-        :editable="true"
-        @cell-clicked="CellClicked"
-      />  -->
-
       <BuildingTable
         :items="items"
         @building-clicked="BuildingClicked"
@@ -135,24 +128,6 @@ public BuildingClicked(id: string){
     this.modalOpen = true;
 }
 
-
-  // public CellClicked(cell: TableCell): void {
-  //   if (cell) {
-  //     this.ColumnType = cell.type as ColumnType;
-
-  //     if (this.ColumnType == ColumnType.CITY) {
-  //       this.cityId = cell.id;
-  //     } else if (this.ColumnType == ColumnType.BUILDING) {
-  //       this.buildingId = cell.id;
-  //     } else if (this.ColumnType == ColumnType.ROOM) {
-  //       this.roomId = cell.id;
-  //     } else {
-  //       return;
-  //     }
-  //     this.modalOpen = true;
-  //   }
-  // }
-
   //Format objects to display in the table
 GenerateTableObjects(buildings: Building[]){
   this.items = new Array<Object>();
@@ -168,34 +143,6 @@ GenerateTableObjects(buildings: Building[]){
   });
 }
 
-  // GenerateTableObjects(rooms: Room[]) {
-  //   this.items = new Array<Object>();
-  //   rooms.forEach((value) => {
-  //     this.items.push({
-  //       Stad: {
-  //         id: value.building.address.city.id,
-  //         displayName: value.building.address.city.name,
-  //         type: ColumnType.CITY,
-  //       } as TableCell,
-        // Gebouw: {
-        //   id: value.building.id,
-        //   displayName:
-        //     value.building.name +
-        //     ", " +
-        //     value.building.address.street +
-        //     " " +
-        //     value.building.address.number,
-        //   type: ColumnType.BUILDING,
-        // } as TableCell,
-        // Ruimte: {
-        //   id: value.id,
-        //   displayName: value.name,
-        //   type: ColumnType.ROOM,
-        // } as TableCell,
-  //     });
-  //   });
-  // }
-
   ReloadTable(): void {
     this.items = [];
     this.modalOpen = false;
@@ -210,22 +157,6 @@ GenerateTableObjects(buildings: Building[]){
     );
     this.GenerateTableObjects(this.buildings);
   }
-
-
-  // ReloadTable(): void {
-  //   this.items = [];
-  //   this.modalOpen = false;
-  //   this.GetRooms();
-  // }
-
-  // public loadPage(value: number) {
-  //   const pageIndex = (value - 1) * this.visibleItemsPerPageCount;
-  //   this.rooms = this.allRooms.slice(
-  //     pageIndex,
-  //     pageIndex + this.visibleItemsPerPageCount
-  //   );
-  //   this.GenerateTableObjects(this.rooms);
-  // }
 }
 </script>
 
