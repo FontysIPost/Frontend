@@ -25,12 +25,6 @@
         <div v-else>
           <div v-if="!fPackage.routeFinished">
             <div class="form">
-              <!-- <InputField
-              label="Afgeleverd door:"
-              v-model:input="selectedPersonOption"
-              
-              
-              /> -->
              
               <CBSearchSuggestions
                 :options="personOptions"
@@ -72,31 +66,7 @@
                   @update:input="fontysIDCharacterCheck"
                 />
                
-                <!--
-                <CBSearchSuggestions
-                  :options="personOptions"
-                  :custom="true"
-                  :valid="personConfirmedValid"
-                  @select-changed="personConfirmedChanged"
-                  :selectedOption="selectedPersonConfirmedOption"
-                >
-                  <span>
-                    Ik bevestig dat het pakket in goede orde is afgeleverd
-                  </span>
-                </CBSearchSuggestions> -->
-
-
-                    <!-- Scan de fontyspas voor checkout:
-                <StreamBarcodeReader
-                    @decode="onDecode"
-                    @loaded="onLoaded"
-                ></StreamBarcodeReader>
-                <ImageBarcodeReader
-                    @decode="onDecode"
-                    @error="onError"
-                ></ImageBarcodeReader> -->
-
-                <div v-if="passcan">
+                  <div v-if="passcan">
                   <div v-if="completedBy.name !== '' && completedBy != null">
                       <p>{{completedBy.name}}</p>
                     <SmallBtnFinish
@@ -132,8 +102,8 @@ import SelectOption from "@/classes/helpers/SelectOption";
 import SmallBtnFinish from "@/components/standardUi/SmallBtnFinish.vue";
 import TicketComp from "@/components/route/TicketComp.vue";
 import LoadingIcon from "@/components/standardUi/LoadingIcon.vue";
-import { StreamBarcodeReader } from "vue-barcode-reader";
-import { ImageBarcodeReader } from "vue-barcode-reader";
+import StreamBarcodeReader from "@/components/BarCodeScanner/StreamBarcodeReader.vue";
+import ImageBarcodeReader from "@/components/BarCodeScanner/ImageBarcodeReader.vue";
 import InputField from "@/components/standardUi/InputField.vue";
 import  Signature  from "@/components/BarCodeScanner/Signature.vue";
 // Types.
@@ -174,7 +144,7 @@ export default class CreateTicket extends Vue {
   } as Ticket;
 
   // Default.
-  private loading: Boolean = true;
+  private loading: boolean = true;
   private adding: boolean = false;
   @Prop()
   private fPackage!: Package;
@@ -184,7 +154,7 @@ export default class CreateTicket extends Vue {
     .emitter;
 
   // Errors.
-  private errors: String[] = [];
+  private errors: string[] = [];
 
   // Employee data.
   private selectedPersonOption: SelectOption = new SelectOption("", "");
@@ -195,8 +165,8 @@ export default class CreateTicket extends Vue {
   
   private personOptions: Array<SelectOption> = new Array<SelectOption>();
   private persons: Array<Person> = new Array<Person>();
-  private personValid: Boolean = true;
-  private personConfirmedValid: Boolean = true;
+  private personValid: boolean = true;
+  private personConfirmedValid: boolean = true;
   private completedBy: Person = new Person("","", "");
   private textInputId = '';
   private completedByName = '';
@@ -219,31 +189,18 @@ export default class CreateTicket extends Vue {
   private selectedRoomOption: SelectOption = new SelectOption("", "");
   private roomOptions: Array<SelectOption> = new Array<SelectOption>();
   private rooms: Array<Room> = new Array<Room>();
-  private roomValid: Boolean = true;
+  private roomValid: boolean = true;
   private roomChanged(roomOption: SelectOption) {
     this.selectedRoomOption = roomOption;
     this.roomValid = true;
     this.errors = [];
-    if (
-      this.fPackage.collectionPoint != null &&
-      roomOption.id == this.fPackage.collectionPoint.id
-    ) {
-      this.showPersonConfirmation = true;
-    } else {
-      this.showPersonConfirmation = false;
-    }
+    this.showPersonConfirmation = this.fPackage.collectionPoint != null &&
+        roomOption.id == this.fPackage.collectionPoint.id;
   }
 
   private async runValidation() {
     this.errors = [];
-    //  if (this.persons.some((p) => p.id == this.selectedPersonOption.id)) {
-     this.personValid = true;
-    //  else {
-    //    this.errors.push("Deze persoon kon niet gevonden worden.");
-    //    this.personValid = false;
-    //  }
-
-    if (this.showPersonConfirmation) {
+     this.personValid = true;    if (this.showPersonConfirmation) {
       if (
         this.completedBy.id != null && this.completedBy.id !== ""
       ) {
@@ -270,29 +227,20 @@ export default class CreateTicket extends Vue {
       await this.runValidation();
       if (this.errors.length < 1) {
         console.log(this.selectedPersonOption.id)
-            //console.log(this.selectedRoomOption.id)
-            //console.log(this.fPackage.id)
-            //console.log(this.showPersonConfirmation)
-            
-            //console.log(this.completedBy.id)
         await pakketService
           .createTicket({
             
             locationId: this.selectedRoomOption.id,
             packageId: this.fPackage.id,
-            //completedByPersonId: this.inputResult,
             completedByPersonId: this.selectedPersonOption.id.toString(),
             receivedByPersonId: this.showPersonConfirmation
               ? this.completedBy.id
               : "",
           } as TicketRequest)
-          .then((res) => {
+          .then(() => {
             this.adding = false;
             console.log(this.selectedPersonOption.id)
           })
-          .catch((err) => {
-            
-          });
         this.newTicket();
       } else {
         this.adding = false;
@@ -365,19 +313,13 @@ export default class CreateTicket extends Vue {
         this.emitter.emit("err", err);
       });
 
-    // await personeelService
-      // .getAll()
-      // .then((res) => {
-      var person;
-      axios.get('https://localhost:44369/api/Authentication/singleUser', {
+    let person;
+    axios.get('https://localhost:44369/api/Authentication/singleUser', {
         headers: {
           'Authorization' :  'Bearer ' + localStorage.getItem('token')
         }
       })
       .then((response)=>{
-        // if(response.data.id !== null && response.data.id !== "" && response.data.id !== 0){
-        //   this.showPersonConfirmation = true;
-        // }
         person = response.data;
         this.persons = person;
         console.log(this.persons)
@@ -385,21 +327,7 @@ export default class CreateTicket extends Vue {
         this.selectedPersonOption = new SelectOption(person.id, person.name)
         console.log(this.selectedPersonOption)
         this.completedBy = person
-        //console.log(this.personOptions)
-      // });
-      
-        // this.personOptions.push(new SelectOption(person.id, person.name));
-        
-        // this.persons = response;
-      //   this.persons.forEach((receiver) =>
-      //      this.personOptions.push(new SelectOption(receiver.id, receiver.name))
-      //    );
-      // })
       });
-      // .catch((err: AxiosError) => {
-      //   this.emitter.emit("err", err);
-      //   console.log(err)
-      // });
      this.loading = false;
   }
 }
@@ -484,17 +412,17 @@ blockquote {
   }
 
   .fc {
-    font-size: 0px;
+    font-size: 0;
   }
 }
 
 .input {
   user-select: none;
-  border: 0px;
+  border: 0;
   width: 100%;
   height: 100%;
   background-color: $background-color;
-  padding: 0px 0px;
+  padding: 0 0;
 }
 
 .error {
@@ -503,6 +431,6 @@ blockquote {
 
 .input:focus {
   outline: none;
-  border: 0px;
+  border: 0;
 }
 </style>

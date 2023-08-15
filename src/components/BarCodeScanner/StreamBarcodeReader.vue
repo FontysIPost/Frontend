@@ -19,8 +19,7 @@ export default {
             isLoading: true,
             codeReader: new BrowserMultiFormatReader(),
             isMediaStreamAPISupported:
-                navigator &&
-                navigator.mediaDevices &&
+                navigator?.mediaDevices &&
                 "enumerateDevices" in navigator.mediaDevices
         };
     },
@@ -28,7 +27,6 @@ export default {
     mounted() {
         if (!this.isMediaStreamAPISupported) {
             throw new Exception("Media Stream API is not supported");
-            return;
         }
 
         this.start();
@@ -38,7 +36,7 @@ export default {
         };
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
         this.codeReader.reset();
     },
 

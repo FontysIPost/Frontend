@@ -2,13 +2,6 @@
   <div>
     <LoadingIcon v-if="loading" />
     <div v-else>
-
-     <!-- <TableComponent
-        :items="items"
-        :editable="true"
-        @cell-clicked="CellClicked"
-      />  -->
-
       <CityTable
         :items="items"
         @row-clicked="RowClicked"

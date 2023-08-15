@@ -1,9 +1,10 @@
 <template>
+  <div class="component">
     <btn-back />
     <h1>Steden Overzicht</h1>
     <SearchContainerLocation />
     <CityOverviewTable/>
-    
+  </div>
 </template>
 
 <script lang="ts">
@@ -27,4 +28,12 @@ export default class CityOverview extends Vue {}
 
 <style scoped lang="scss">
 @import "@/styling/main.scss";
+.component {
+  width: 60%;
+}
+@media only screen and (max-width: 930px) {
+  .component {
+    width: 95%;
+  }
+}
 </style>
